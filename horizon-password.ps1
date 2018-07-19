@@ -1,5 +1,5 @@
-﻿###Horizon Usage for VMware Cloud Provider Program
-###Version 1.0 - 19July2018 - Daniel Paluszek / Winston Blake
+###Horizon Usage for VMware Cloud Provider Program
+###Version 1.0 - 19July2018 - Daniel Paluszek, VMware Cloud Provider Program
 ###This part will prompt for the service account credentials and store them in a secure string text file. 
 
 $filename=read-host -Prompt "What should the name of the file be? (will be a .txt file)"

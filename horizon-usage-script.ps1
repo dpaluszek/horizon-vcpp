@@ -23,14 +23,16 @@ connect-hvserver -Credential $credentials -Server $hznode
 $hzservices=$Global:DefaultHVServers.ExtensionData
 
 ##variable for storing connection server health metrics (contains data we're after)
-$hzhealth=$hzservices.ConnectionServerHealth.ConnectionServerHealth_List()
+$hzhealth=$hzservices.UsageStatistics.UsageStatistics_GetLicensingCounters()
 
 ##Replace "$file" line with the target location for your attachment (i.e. C:\directory\file) - leave the $timestamp variable.
 $timestamp = Get-Date -UFormat %Y%b%d
 $file = "c:\horizon\horizon-usage-$timestamp.txt"
 
-$hzhealth.ConnectionData | Out-File $file
+$hzhealth.HighestUsage | Out-File $file
 
+##Reset Highest Usage Count
+$hzservices.UsageStatistics.UsageStatistics_ResetHighestUsageCount()
 
 ##Last step - output to file and email usage report. 
 $date = Get-Date -UFormat %c
